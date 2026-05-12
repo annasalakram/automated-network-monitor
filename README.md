@@ -12,6 +12,42 @@ A Python-based automation tool designed to monitor Cisco network devices (IOS-XR
 - **Instant Notifications**: Sends real-time alerts to a dedicated Telegram Bot.
 - **Secure Configuration**: Uses `.env` files to keep sensitive credentials (passwords/tokens) out of the source code.
 
+## Workflow Logic
+```mermaid
+graph TD
+    %% Define Styles
+    classDef start_end fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef process fill:#fff,stroke:#333,stroke-width:1px;
+    classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+    classDef success fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px;
+    classDef failure fill:#ffcdd2,stroke:#c62828,stroke-width:2px;
+
+    Start([Start Script]) --> LoadEnv[Load .env Credentials]
+    LoadEnv --> Connect{Attempt SSH Connection}
+    
+    %% Connection Logic
+    Connect -- Success --> GetPrompt[Capture Device Prompt]
+    GetPrompt --> SendSuccess[Send SUCCESS Alert to Telegram]
+    
+    Connect -- Auth Error --> SendAuthFail[Send AUTH FAILURE Alert to Telegram]
+    
+    Connect -- Timeout/Network Error --> SendTimeout[Send UNREACHABLE Alert to Telegram]
+    
+    %% Endings
+    SendSuccess --> SuccessNode[Log: SUCCESS]
+    SendAuthFail --> FailNode[Log: ERROR]
+    SendTimeout --> FailNode
+    
+    SuccessNode --> End([End / Wait for Next Loop])
+    FailNode --> End
+
+    %% Applying Styles
+    class Start,End start_end;
+    class SendSuccess,SuccessNode success;
+    class SendAuthFail,SendTimeout,FailNode failure;
+    class Connect decision;
+```
+
 ## 🛠️ Prerequisites
 
 - Python 3.8 or higher.
@@ -93,3 +129,15 @@ automated-network-monitor/
 ├── .gitignore            # Instructions for Git to ignore sensitive files
 ├── README.md             # Detailed project documentation
 └── requirements.txt      # List of Python packages required to run the tool
+```
+
+## 🛡️ Security Note
+
+Security is a top priority in this project. Since network automation involves handling sensitive credentials, the following measures have been implemented:
+
+1.  **Credential Isolation**: No sensitive information (passwords, IP addresses, or Telegram tokens) is hardcoded into the script. All configuration is handled through a local `.env` file.
+2.  **Git Protection**: A `.gitignore` file is included in this repository to explicitly prevent the `.env` file and other temporary files from being uploaded to GitHub.
+3.  **Template-Based Sharing**: We provide a `.env.example` file as a template. This allows other users to understand the required variables without exposing the actual production credentials.
+4.  **Best Practices**: It is highly recommended to use a dedicated, low-privilege service account when connecting to production network devices.
+
+> **Warning:** Never remove `.env` from your `.gitignore` file. If you accidentally commit sensitive data, rotate your passwords and tokens immediately.
