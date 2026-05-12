@@ -55,8 +55,9 @@ Follow these steps to run the network monitor. Ensure your Virtual Environment i
 
 ### 2. Execution
   Run the main script using Python:
-      ```bash
-      python src/monitor.py
+  
+    ```bash
+    python src/monitor.py
 
 ## 📸 Preview
 
