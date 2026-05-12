@@ -62,11 +62,9 @@ Follow these steps to run the network monitor. Ensure your Virtual Environment i
 
 Below are the screenshots of the Telegram notifications based on different network scenarios. The bot is programmed to provide specific feedback for each condition:
 
-| Scenario | Telegram Notification |
-| :--- | :--- |
-| **Success** | ![Success Alert](images/success_alert.png) |
-| **Wrong Credentials** | ![Auth Error](images/error_auth.png) |
-| **Connection Timeout** | ![Timeout Error](images/error_timeout.png) |
+|               **Success**                   |        **Wrong Credentials**         |           **Connection Timeout**           |
+|                  :---:                      |               :---:                  |                   :---:                    |
+| ![Success Alert](images/success_alert.png)  | ![Auth Error](images/error_auth.png) | ![Timeout Error](images/error_timeout.png) |
 
 > **Note:** These screenshots demonstrate the script's ability to catch specific exceptions and provide meaningful diagnostic information in real-time.
 
