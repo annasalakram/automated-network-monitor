@@ -50,14 +50,13 @@ A Python-based automation tool designed to monitor Cisco network devices (IOS-XR
 
 Follow these steps to run the network monitor. Ensure your Virtual Environment is active before proceeding.
 
-### 1. Verification
-      Before running the script, verify that your `.env` file is properly configured with your Cisco Sandbox credentials and Telegram Bot API token.
+1. **Verification**
+   Before running the script, verify that your `.env` file is properly configured with your Cisco Sandbox credentials and Telegram Bot API token.
 
-### 2. Execution
-  Run the main script using Python:
-  
+2. **Execution**
+   Run the main script using Python:
     ```bash
-    python src/monitor.py
+   python src/monitor.py 
 
 ## 📸 Preview
 
@@ -70,3 +69,29 @@ Below are the screenshots of the Telegram notifications based on different netwo
 | **Connection Timeout** | ![Timeout Error](images/error_timeout.png) |
 
 > **Note:** These screenshots demonstrate the script's ability to catch specific exceptions and provide meaningful diagnostic information in real-time.
+
+
+## 🛠️ Built With
+
+This automation project is built using a modern Python tech stack and industry-standard networking tools:
+
+* **[Python 3.x](https://www.python.org/)** - The core programming language used for the automation logic.
+* **[Netmiko](https://github.com/ktbyers/netmiko)** - A powerful multi-vendor library based on Paramiko, used to simplify SSH connections and command execution on Cisco devices.
+* **[Requests](https://docs.python-requests.org/)** - A simple yet elegant HTTP library used to communicate with the Telegram Bot API.
+* **[Python-Dotenv](https://pypi.org/project/python-dotenv/)** - Used for managing environment variables, ensuring that API tokens and credentials remain secure.
+* **[Cisco DevNet Sandboxes](https://developer.cisco.com/site/sandbox/)** - Provided the virtualized IOS-XR and IOS-XE environment for testing and validation.
+* **[Telegram Bot API](https://core.telegram.org/bots/api)** - Used as the primary alerting interface for real-time network status updates.
+
+## 📂 Project Structure
+
+A clean and organized directory structure ensures the project is easy to maintain and scale.
+
+```text
+automated-network-monitor/
+├── src/
+│   └── monitor.py        # Core logic for SSH connection and error handling
+├── images/               # Documentation assets (Screenshots)
+├── .env.example          # Template for required environment variables
+├── .gitignore            # Instructions for Git to ignore sensitive files
+├── README.md             # Detailed project documentation
+└── requirements.txt      # List of Python packages required to run the tool
