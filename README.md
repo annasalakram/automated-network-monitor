@@ -54,7 +54,7 @@ Follow these steps to run the network monitor. Ensure your Virtual Environment i
       Before running the script, verify that your `.env` file is properly configured with your Cisco Sandbox credentials and Telegram Bot API token.
 
 ### 2. Execution
-      Run the main script using Python:
+    Run the main script using Python:
       ```bash
       python src/monitor.py
 
